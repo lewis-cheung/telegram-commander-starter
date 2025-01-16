@@ -1,12 +1,12 @@
 import { TelegramCommander } from 'telegram-commander'
 
+import config from './config.js'
+import logger from './logger.js'
+
 export default class TelegramCommanderApp extends TelegramCommander {
 
-  constructor(token) {
-    super(token)
-    this.initCommands().then(() => {
-      console.log('Commands initialized') // TODO: use logger instead
-    })
+  constructor() {
+    super(config.telegram.token)
   }
 
   async initCommands() {
@@ -19,5 +19,10 @@ export default class TelegramCommanderApp extends TelegramCommander {
     })
 
     await this.syncCommands()
+  }
+
+  async start() {
+    await this.initCommands()
+    logger.info('Telegram Commander started.')
   }
 }

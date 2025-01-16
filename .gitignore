@@ -1,6 +1,11 @@
+# General
 /node_modules/
 .DS_Store
 
+# config files
 /config.yaml
 /config.*.yaml
 !/config.template.yaml
+
+# Logs
+/logs/

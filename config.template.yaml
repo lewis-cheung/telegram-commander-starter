@@ -1,4 +1,5 @@
 env: development
+logDir: ./logs
 
 telegram:
   token: dummy # Telegram bot token, get it from @BotFather
