@@ -3,3 +3,6 @@ logDir: ./logs
 
 telegram:
   token: dummy # Telegram bot token, get it from @BotFather
+  whitelistedChatIds: # omit this if you want to allow all chat ids
+    - 1234567890
+    - 1234567891

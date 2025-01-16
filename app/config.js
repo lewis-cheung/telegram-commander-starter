@@ -14,6 +14,7 @@ export default {
 
   telegram: {
     token: validateString(yamlObj, 'telegram.token', ''),
+    whitelistedChatIds: validateArray(yamlObj, 'telegram.whitelistedChatIds', undefined),
   },
 }
 

@@ -6,7 +6,10 @@ import logger from './logger.js'
 export default class TelegramCommanderApp extends TelegramCommander {
 
   constructor() {
-    super(config.telegram.token)
+    super(config.telegram.token, {
+      logger,
+      whitelistedChatIds: config.telegram.whitelistedChatIds,
+    })
   }
 
   async initCommands() {
@@ -14,7 +17,7 @@ export default class TelegramCommanderApp extends TelegramCommander {
       name: 'sample',
       description: 'Sample command',
       handler: async (ctx) => {
-        await ctx.reply('sample reply')
+        await ctx.reply(`chatId: ${ctx.chatId}`)
       }
     })
 
