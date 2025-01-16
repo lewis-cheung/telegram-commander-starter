@@ -2,14 +2,14 @@ import fs from 'fs'
 import yaml from 'js-yaml'
 import dot from 'dot-object'
 
-import { Env } from './types'
+import { Env } from './types.js'
 
 // load the configs from the config file
 const configPath = './config.yaml'
 const yamlObj = yaml.load(fs.readFileSync(configPath, 'utf8'))
 
 export default {
-  env: validateEnum(yamlObj, 'env', Object.keys(Env), 'development'),
+  env: validateEnum(yamlObj, 'env', Object.values(Env), 'development'),
 
   telegram: {
     token: validateString(yamlObj, 'telegram.token', ''),

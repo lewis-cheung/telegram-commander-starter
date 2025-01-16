@@ -4,7 +4,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js --require=suppress-experimental-warnings",
+    "pm2:start": "pm2 start ecosystem.config.cjs"
   },
   "author": "Lewis Cheung",
   "license": "ISC",
@@ -12,7 +13,7 @@
   "dependencies": {
     "dot-object": "^2.1.5",
     "js-yaml": "^4.1.0",
-    "telegram-commander": "github:lewislun/telegram-commander"
+    "telegram-commander": "github:lewislun/telegram-commander#v0.8.6"
   },
   "devDependencies": {
     "@types/dot-object": "^2.1.6",

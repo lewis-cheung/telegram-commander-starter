@@ -4,7 +4,7 @@ export default class TelegramCommanderApp extends TelegramCommander {
 
   constructor(token) {
     super(token)
-    initCommands().then(() => {
+    this.initCommands().then(() => {
       console.log('Commands initialized') // TODO: use logger instead
     })
   }
