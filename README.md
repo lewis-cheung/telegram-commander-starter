@@ -7,3 +7,6 @@
 - remove these files:
   - `app/testable.js`
   - `app/testable.test.js`
+  - `app/models/sample.js`
+- remove sample command in `app/index.js`
+- remove export of `Sample` in `app/models/index.js`
