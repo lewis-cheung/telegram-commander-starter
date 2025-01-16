@@ -9,8 +9,11 @@ const configPath = './config.yaml'
 const yamlObj = yaml.load(fs.readFileSync(configPath, 'utf8'))
 
 export default {
-  // logDir: validateString(yamlObj, 'logDir', './logs'),
   env: validateEnum(yamlObj, 'env', Object.keys(Env), 'development'),
+
+  telegram: {
+    token: validateString(yamlObj, 'telegram.token', ''),
+  },
 }
 
 /**
