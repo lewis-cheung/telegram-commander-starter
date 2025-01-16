@@ -9,12 +9,14 @@ const configPath = './config.yaml'
 const yamlObj = yaml.load(fs.readFileSync(configPath, 'utf8'))
 
 export default {
+  appName: validateString(yamlObj, 'appName', 'unnamed app'),
   env: validateEnum(yamlObj, 'env', Object.values(Env), 'development'),
   logDir: validateString(yamlObj, 'logDir', './logs'),
 
   telegram: {
     token: validateString(yamlObj, 'telegram.token', ''),
     whitelistedChatIds: validateArray(yamlObj, 'telegram.whitelistedChatIds', undefined),
+    notiChatIds: validateArray(yamlObj, 'telegram.notiChatIds', []),
   },
 }
 
