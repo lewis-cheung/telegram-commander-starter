@@ -20,16 +20,16 @@ A framework for building Telegram bots with Telegram Commander (https://github.c
 ```bash
 npm install
 ```
-- Create `config.yaml` from `config.template.yaml` and fill in the values
+2. Create `config.yaml` from `config.template.yaml` and fill in the values
 ```bash
 cp config.template.yaml config.yaml
 ```
-- Run the app
+3. Run the app
 ```bash
 npm run pm2:start  # for production
 npm run pm2:dev  # for development
 ```
-- Run tests
+4. Run tests
 ```bash
 npm run test
 ```
