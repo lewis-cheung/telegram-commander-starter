@@ -18,6 +18,11 @@ export default {
     whitelistedChatIds: validateArray(yamlObj, 'telegram.whitelistedChatIds', undefined),
     notiChatIds: validateArray(yamlObj, 'telegram.notiChatIds', []),
   },
+
+  mongo: {
+    uri: validateString(yamlObj, 'mongo.uri', 'mongodb://localhost:27017'),
+    dbName: validateString(yamlObj, 'mongo.dbName', 'dev-db'),
+  },
 }
 
 /**

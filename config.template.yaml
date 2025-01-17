@@ -6,6 +6,10 @@ telegram:
   token: dummy # Telegram bot token, get it from @BotFather
   whitelistedChatIds: # Only ids listed here are allowed to call the commands. Omit this if you want to allow all.
     - 1234567890
-    - 1234567891
+    - -4234567891
   notiChatIds: # Chat ids to send notifications (e.g. errors).
     - 1234567890
+
+mongo:
+  uri: mongodb://localhost:27017
+  dbName: telegram-commander-starter-dev
