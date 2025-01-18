@@ -6,7 +6,7 @@ const sampleSchema = new mongoose.Schema({
   timestamps: true,
 })
 
-const Sample = mongoose.model('ReceptiveTarget', sampleSchema)
+const Sample = mongoose.model('Sample', sampleSchema)
 
 export {
   Sample,
