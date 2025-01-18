@@ -27,9 +27,9 @@ export default class TelegramCommanderApp extends TelegramCommander {
     await this.syncCommands()
   }
 
-  async initMongo() {
+  async initMongo(uri, dbName) {
     try {
-      const fullUri = `${config.mongo.uri}/${config.mongo.dbName}`
+      const fullUri = `${uri}/${dbName}`
       await mongoose.connect(fullUri)
       logger.info(`Connected to database at ${fullUri}.`)
     } catch (error) {
@@ -39,7 +39,11 @@ export default class TelegramCommanderApp extends TelegramCommander {
   }
 
   async start() {
-    await this.initMongo()
+    if (config.mongo?.uri !== undefined && config.mongo?.dbName !== undefined) {
+      await this.initMongo(config.mongo.uri, config.mongo.dbName)
+    } else {
+      logger.warn('Mongo uri/dbName is not set in config.yaml, skipping database connection. If this is intentional, remove initMongo() from index.js.')
+    }
     await this.initCommands()
     await this.notify(e(`${config.appName} started.`))
   }
