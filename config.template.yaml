@@ -13,3 +13,5 @@ telegram:
 mongo:
   uri: mongodb://localhost:27017
   dbName: telegram-commander-starter-dev
+  user: db-user
+  password: db-password

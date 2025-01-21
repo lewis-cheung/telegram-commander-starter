@@ -22,6 +22,8 @@ export default {
   mongo: {
     uri: validateString(yamlObj, 'mongo.uri', 'mongodb://localhost:27017'),
     dbName: validateString(yamlObj, 'mongo.dbName', 'dev-db'),
+    user: validateString(yamlObj, 'mongo.user', ''),
+    password: validateString(yamlObj, 'mongo.password', ''),
   },
 }
 

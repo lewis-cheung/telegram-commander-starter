@@ -32,10 +32,13 @@ export default class TelegramCommanderApp extends TelegramCommander {
     await this.syncCommands()
   }
 
-  async initMongo(uri, dbName) {
+  async initMongo(uri, dbName, user, password) {
     try {
       const fullUri = `${uri}/${dbName}`
-      await mongoose.connect(fullUri)
+      await mongoose.connect(fullUri, {
+        user,
+        pass: password
+      })
       logger.info(`Connected to database at ${fullUri}.`)
     } catch (error) {
       logger.error('Failed to connect to database.', error)
