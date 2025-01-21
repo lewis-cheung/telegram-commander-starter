@@ -15,43 +15,43 @@ const userSchema = new mongoose.Schema({
 }, {
   timestamps: true,
 })
+userSchema.index({ chatId: 1 }, { unique: true })
 
-const User = mongoose.model('User', userSchema)
+class User extends mongoose.model('User', userSchema) {
+  /**
+   * Get a user by chatId
+   * @param {Number} chatId
+   * @param {Object} [opts={}]
+   * @param {boolean} [opts.createIfNotFound=false] - Create a new user if not found
+   * @param {boolean} [opts.updateLastCommandAt=true] - Update the lastCommandAt field
+   * @returns {Promise<User>}
+   */
+  static async getUserByChatId(chatId, opts = {}) {
+    opts = {
+      createIfNotFound: false,
+      updateLastCommandAt: true,
+      ...opts,
+    }
 
-/**
- * Create a new user
- * @param {Number} chatId
- * @param {UserStatus} status
- * @returns {Promise<User>}
- */
-function createUser(chatId, status) {
-  const user = new User({ chatId, status })
-  return user.save()
-}
-
-/**
- * Get a user by chatId
- * @param {Number} chatId
- * @returns {Promise<User>}
- */
-function getUserByChatId(chatId) {
-  return User.findOne({ chatId })
-}
-
-/**
- * Get a user by id
- * @param {string} id
- * @returns {Promise<User>}
- */
-function getUserById(id) {
-  return User.findById(id)
+    let user = await this.findOne({ chatId })
+    let isUpdated = false
+    if (opts.createIfNotFound && !user) {
+      user = new User({ chatId, status: UserStatus.ACTIVE })
+      isUpdated = true
+    }
+    if (opts.updateLastCommandAt) {
+      user.lastCommandAt = new Date()
+      isUpdated = true
+    }
+    if (isUpdated) {
+      await user.save()
+    }
+    return user
+  }
 }
 
 export {
   User,
   UserStatus,
   userSchema,
-  createUser,
-  getUserByChatId,
-  getUserById,
 }
