@@ -9,6 +9,11 @@ export default class TelegramCommanderApp extends TelegramCommander {
   /** @type {number[]} */           notiChatIds = config.telegram.notiChatIds
 
   constructor() {
+    if (config.telegram.token === undefined) {
+      logger.error('Telegram token is not set in config.yaml')
+      process.exit(1)
+    }
+
     super(config.telegram.token, {
       logger,
       whitelistedChatIds: config.telegram.whitelistedChatIds,
