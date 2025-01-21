@@ -32,6 +32,13 @@ export default class TelegramCommanderApp extends TelegramCommander {
     await this.syncCommands()
   }
 
+  /**
+   * Initialize MongoDB connection
+   * @param {string} uri
+   * @param {string} dbName
+   * @param {string} user
+   * @param {string} password
+   */
   async initMongo(uri, dbName, user, password) {
     try {
       const fullUri = `${uri}/${dbName}`
@@ -63,4 +70,6 @@ export default class TelegramCommanderApp extends TelegramCommander {
   async notify(content) {
     await this.sendMessage(this.notiChatIds, content)
   }
+
+  
 }
