@@ -34,7 +34,8 @@ export default class TelegramCommanderApp extends TelegramCommander {
       name: 'sample',
       description: 'Sample command',
       handler: async (ctx) => {
-        await ctx.reply(`chatId: ${ctx.chatId}`)
+        const input = await ctx.prompt(e('Enter something: '))
+        await ctx.reply(e(`You entered: ${input}!`))
       }
     })
 
