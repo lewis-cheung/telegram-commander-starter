@@ -9,6 +9,8 @@ A framework for building Telegram bots with Telegram Commander (https://github.c
 - change values in `ecosystem.config.cjs`
   - `name`
   - `max_memory_restart`
+- change values in `.npmrc`
+  - `tag-version-prefix`
 - remove these files:
   - `app/testable.js`
   - `app/testable.test.js`
