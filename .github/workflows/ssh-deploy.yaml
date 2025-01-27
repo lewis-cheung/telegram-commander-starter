@@ -39,13 +39,13 @@ jobs:
             ssh-keyscan -H ${{ github.server_url }} >> ~/.ssh/known_hosts
 
             # Setup deploy key
-            DEPLOY_KEY_NAME=${{ github.repository_id }}-deploy-key
-            echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/${DEPLOY_KEY_NAME}
-            chmod 600 ~/.ssh/${DEPLOY_KEY_NAME}
+            DEPLOY_KEY_PATH=~/.ssh/${{ github.repository_id }}-deploy-key
+            echo "${{ secrets.DEPLOY_KEY }}" > ${DEPLOY_KEY_PATH}
+            chmod 600 ${DEPLOY_KEY_PATH}
 
             # Configure Git to use deploy key
             eval "$(ssh-agent -s)"
-            ssh-add ~/.ssh/${DEPLOY_KEY_NAME}
+            ssh-add ${DEPLOY_KEY_PATH}
 
             # Install NVM if it doesn't exist
             if [ ! -d "${HOME}/.nvm/.git" ]; then
