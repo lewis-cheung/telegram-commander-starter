@@ -14,7 +14,7 @@ jobs:
     steps:
       - id: check
         run: |
-          if [ -n "${{ secrets.HOST }}" ] && [ -n "${{ secrets.USERNAME }}" ] && [ -n "${{ secrets.PRIVATE_KEY }}" ] && [ -n "${{ vars.APP_PATH }}" ] && [ -n "${{ secrets.DEPLOY_KEY }}" ]; then
+          if [ -n "${{ secrets.HOST }}" ] && [ -n "${{ secrets.SSH_USERNAME }}" ] && [ -n "${{ secrets.SSH_PRIVATE_KEY }}" ] && [ -n "${{ vars.APP_PATH }}" ] && [ -n "${{ secrets.DEPLOY_KEY }}" ]; then
             echo "has-secrets=true" >> $GITHUB_OUTPUT
           else
             echo "has-secrets=false" >> $GITHUB_OUTPUT
@@ -31,8 +31,8 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.PRIVATE_KEY }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             # Add GitHub to known hosts
             mkdir -p ~/.ssh
