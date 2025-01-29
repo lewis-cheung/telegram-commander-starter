@@ -19,11 +19,14 @@ A framework for building Telegram bots with Telegram Commander (https://github.c
 ## Installation and Usage
 ### Github Actions Deployment
 1. Configure secrets and variables in GitHub repository settings:
-  - `HOST`
-  - `SSH_USERNAME`
-  - `SSH_PRIVATE_KEY`
-  - `DEPLOY_KEY`
-  - `APP_PATH`
+  - Secrets:
+    - `HOST`
+    - `SSH_USERNAME`
+    - `SSH_PRIVATE_KEY`
+    - `DEPLOY_KEY`
+  - Variables:
+    - `APP_PATH`
+    - `NODE_VERSION`
 2. Configure `.github/workflows/ssh-deploy.yaml`
   - change `on.push.tags` to tag pattern that you want to deploy (e.g. `v*`)
   - make sure `jobs.check-secrets.environment` and `jobs.deploy.environment` is the same as the environment your GitHub Actions secrets are set for

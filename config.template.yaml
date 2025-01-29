@@ -1,4 +1,3 @@
-appName: telegram-commander-starter
 env: development
 logDir: ./logs
 

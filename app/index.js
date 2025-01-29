@@ -1,6 +1,7 @@
 import { TelegramCommander, escapeMarkdownV2 as e } from 'telegram-commander'
 import mongoose from 'mongoose'
 
+import packageJson from '../package.json' assert { type: 'json' }
 import { User } from './models/index.js'
 import config from '../config.js'
 import logger from './logger.js'
@@ -71,7 +72,7 @@ export default class TelegramCommanderApp extends TelegramCommander {
       logger.warn('mongo.fullUri is not set in config.yaml, skipping database connection. If this is intentional, remove initMongo() from index.js.')
     }
     await this.initCommands()
-    await this.notify(e(`${config.appName} started.`))
+    await this.notify(e(`${packageJson.name} v${packageJson.version} started.`))
   }
 
   /**
